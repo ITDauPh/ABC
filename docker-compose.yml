@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:14
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+  django:
+    container_name: django
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
